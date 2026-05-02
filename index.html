@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juan Jose Galvan | Operations & Digital Excellence</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --navy:   #0f172a;
+      --navy2:  #1e293b;
+      --accent: #4f46e5;
+      --accent2:#818cf8;
+      --green:  #10b981;
+      --text:   #1e293b;
+      --muted:  #64748b;
+      --border: #e2e8f0;
+      --bg:     #f1f5f9;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── LAYOUT ─── */
+    .page {
+      max-width: 980px;
+      margin: 36px auto;
+      background: #fff;
+      box-shadow: 0 8px 40px rgba(0,0,0,.14);
+      border-radius: 10px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 270px 1fr;
+    }
+
+    /* ─── SIDEBAR ─── */
+    .sidebar {
+      background: var(--navy);
+      color: #fff;
+      padding: 44px 26px 40px;
+    }
+
+    .avatar {
+      width: 84px; height: 84px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; font-weight: 800; color: #fff;
+      margin: 0 auto 18px;
+      box-shadow: 0 4px 20px rgba(79,70,229,.5);
+    }
+
+    .sidebar-name {
+      font-size: 19px; font-weight: 700;
+      text-align: center; line-height: 1.25;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-role {
+      font-size: 10.5px; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--accent2);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .s-section { margin-bottom: 26px; }
+
+    .s-title {
+      font-size: 9.5px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--accent2);
+      margin-bottom: 13px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    /* contact */
+    .c-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 12px; color: rgba(255,255,255,.78);
+      margin-bottom: 9px;
+      text-decoration: none;
+    }
+    .c-item svg { width:14px; height:14px; flex-shrink:0; margin-top:2px; opacity:.7; }
+    .c-item a { color: inherit; text-decoration: none; }
+    .c-item a:hover { color: var(--accent2); }
+
+    /* skill bars */
+    .sk-item { margin-bottom: 9px; }
+    .sk-label {
+      font-size: 11.5px; color: rgba(255,255,255,.85);
+      margin-bottom: 4px;
+    }
+    .sk-bar {
+      height: 3px; background: rgba(255,255,255,.12);
+      border-radius: 2px; overflow: hidden;
+    }
+    .sk-fill { height: 100%; background: var(--accent2); border-radius: 2px; }
+
+    /* competence tags */
+    .tag {
+      display: inline-block;
+      background: rgba(79,70,229,.28);
+      color: var(--accent2);
+      font-size: 10.5px; font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin: 3px 3px 0 0;
+      border: 1px solid rgba(129,140,248,.25);
+    }
+
+    /* languages */
+    .lang-row {
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,.78);
+      margin-bottom: 6px;
+    }
+    .lang-level { color: var(--accent2); font-size: 11px; }
+
+    /* education (sidebar) */
+    .edu-deg  { font-size: 12px; font-weight: 600; color: rgba(255,255,255,.9); line-height:1.3; }
+    .edu-uni  { font-size: 11px; color: rgba(255,255,255,.55); margin-top: 2px; }
+    .edu-date { font-size: 11px; color: var(--accent2); margin-top: 2px; }
+
+    /* ─── MAIN ─── */
+    .main { padding: 44px 42px 44px 38px; }
+
+    /* header */
+    .m-header { margin-bottom: 32px; padding-bottom: 26px; border-bottom: 2px solid var(--border); }
+
+    .m-name {
+      font-size: 38px; font-weight: 800;
+      color: var(--navy); line-height: 1.05;
+      letter-spacing: -1px;
+    }
+
+    .m-tagline {
+      font-size: 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: .8px;
+      color: var(--accent);
+      margin: 6px 0 14px;
+    }
+
+    .m-summary {
+      font-size: 13px; color: var(--muted); line-height: 1.75;
+    }
+
+    /* metrics strip */
+    .metrics {
+      display: flex; gap: 20px;
+      margin-top: 18px;
+    }
+
+    .metric-box {
+      background: #f8faff;
+      border: 1px solid #e0e7ff;
+      border-radius: 8px;
+      padding: 10px 16px;
+      text-align: center;
+      flex: 1;
+    }
+
+    .metric-num {
+      font-size: 20px; font-weight: 800;
+      color: var(--accent); line-height: 1;
+    }
+
+    .metric-lbl {
+      font-size: 10px; color: var(--muted);
+      margin-top: 3px; font-weight: 500;
+    }
+
+    /* section title */
+    .sec-title {
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sec-title::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--border);
+    }
+
+    /* experience */
+    .section { margin-bottom: 30px; }
+
+    .exp-item {
+      margin-bottom: 20px;
+      padding-left: 18px;
+      border-left: 2px solid var(--border);
+      position: relative;
+    }
+    .exp-item::before {
+      content: '';
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: -5.5px; top: 5px;
+    }
+
+    .exp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 1px;
+    }
+
+    .exp-role {
+      font-size: 13.5px; font-weight: 700; color: var(--text);
+    }
+
+    .exp-badge {
+      font-size: 10.5px; font-weight: 600;
+      color: var(--accent);
+      background: rgba(79,70,229,.08);
+      padding: 2px 9px; border-radius: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .exp-company {
+      font-size: 11.5px; color: var(--muted);
+      font-weight: 500; margin-bottom: 7px;
+    }
+
+    .exp-desc {
+      font-size: 12.5px; color: var(--muted); line-height: 1.7;
+    }
+    .exp-desc ul { padding-left: 15px; margin-top: 5px; }
+    .exp-desc li { margin-bottom: 3px; }
+
+    /* green highlight */
+    .hi {
+      display: inline-block;
+      background: #f0fdf4; color: #15803d;
+      font-size: 11px; font-weight: 600;
+      padding: 1px 7px; border-radius: 4px;
+      border: 1px solid #bbf7d0;
+    }
+
+    /* project cards */
+    .proj-card {
+      background: #f8faff;
+      border: 1px solid #e0e7ff;
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin-bottom: 12px;
+    }
+
+    .proj-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .proj-desc  { font-size: 12px; color: var(--muted); line-height: 1.65; margin-bottom: 10px; }
+
+    .proj-metrics { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+    .pm {
+      background: #f0fdf4; color: #15803d;
+      font-size: 11px; font-weight: 600;
+      padding: 2px 9px; border-radius: 4px;
+      border: 1px solid #bbf7d0;
+    }
+
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+    .pt {
+      background: rgba(79,70,229,.1); color: var(--accent);
+      font-size: 10px; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* ─── PRINT ─── */
+    @media print {
+      body { background: #fff; }
+      .page { margin: 0; box-shadow: none; border-radius: 0; }
+    }
+
+    @media (max-width: 700px) {
+      .page { grid-template-columns: 1fr; }
+      .sidebar { padding: 30px 22px; }
+      .main { padding: 28px 22px; }
+      .metrics { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ SIDEBAR ═══ -->
+  <aside class="sidebar">
+    <div class="avatar">JG</div>
+    <div class="sidebar-name">Juan Jose Galvan</div>
+    <div class="sidebar-role">Operations · Digital Transformation</div>
+
+    <!-- CONTACTO -->
+    <div class="s-section">
+      <div class="s-title">Contacto</div>
+
+      <div class="c-item">
+        <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg>
+        galvan457@gmail.com
+      </div>
+
+      <div class="c-item">
+        <svg fill="currentColor" viewBox="0 0 20 20"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/></svg>
+        011 15 51188747
+      </div>
+
+      <div class="c-item">
+        <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+        Buenos Aires, Argentina
+      </div>
+
+      <div class="c-item">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        <a href="https://www.linkedin.com/in/juanjosegalvan/" target="_blank">linkedin.com/in/juanjosegalvan</a>
+      </div>
+
+      <div class="c-item">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        <a href="https://github.com/Juan-457" target="_blank">github.com/Juan-457</a>
+      </div>
+    </div>
+
+    <!-- TECNOLOGÍAS -->
+    <div class="s-section">
+      <div class="s-title">Tecnologías</div>
+      <div class="sk-item">
+        <div class="sk-label">Power BI</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:92%"></div></div>
+      </div>
+      <div class="sk-item">
+        <div class="sk-label">Power Automate</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:90%"></div></div>
+      </div>
+      <div class="sk-item">
+        <div class="sk-label">Power Apps</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:85%"></div></div>
+      </div>
+      <div class="sk-item">
+        <div class="sk-label">Excel Avanzado</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:95%"></div></div>
+      </div>
+      <div class="sk-item">
+        <div class="sk-label">UiPath (RPA)</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:75%"></div></div>
+      </div>
+      <div class="sk-item">
+        <div class="sk-label">API REST</div>
+        <div class="sk-bar"><div class="sk-fill" style="width:72%"></div></div>
+      </div>
+    </div>
+
+    <!-- COMPETENCIAS -->
+    <div class="s-section">
+      <div class="s-title">Competencias</div>
+      <span class="tag">S&OP</span>
+      <span class="tag">Forecast</span>
+      <span class="tag">Inventarios</span>
+      <span class="tag">Automatización</span>
+      <span class="tag">Analítica de datos</span>
+      <span class="tag">CRM</span>
+      <span class="tag">Liderazgo</span>
+      <span class="tag">Negociación</span>
+      <span class="tag">Mejora continua</span>
+    </div>
+
+    <!-- IDIOMAS -->
+    <div class="s-section">
+      <div class="s-title">Idiomas</div>
+      <div class="lang-row"><span>Español</span><span class="lang-level">Nativo</span></div>
+      <div class="lang-row"><span>Inglés</span><span class="lang-level">Intermedio</span></div>
+    </div>
+
+    <!-- EDUCACIÓN -->
+    <div class="s-section">
+      <div class="s-title">Educación</div>
+      <div class="edu-deg">Maestría en Operaciones</div>
+      <div class="edu-uni">Universidad Austral · Pilar</div>
+      <div class="edu-date">2020 – 2022 · Tesis pendiente</div>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN ═══ -->
+  <main class="main">
+
+    <!-- HEADER -->
+    <div class="m-header">
+      <div class="m-name">Juan Jose<br>Galvan</div>
+      <div class="m-tagline">Operations Manager · Digital Transformation · Power Platform</div>
+      <p class="m-summary">
+        Profesional con más de 8 años de experiencia en operaciones, logística y transformación digital.
+        Especializado en implementar soluciones con Power Platform y RPA que generan ahorros
+        medibles y eficiencia operativa real. Combino visión estratégica con capacidad de ejecución
+        técnica para liderar proyectos de alto impacto en organizaciones en crecimiento.
+      </p>
+
+      <div class="metrics">
+        <div class="metric-box">
+          <div class="metric-num">+8</div>
+          <div class="metric-lbl">Años de experiencia</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">USD 95k+</div>
+          <div class="metric-lbl">Ahorros generados / año</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">96%</div>
+          <div class="metric-lbl">Reducción tiempos clave</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num">2</div>
+          <div class="metric-lbl">Proyectos de impacto</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCIA -->
+    <div class="section">
+      <div class="sec-title">Experiencia</div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Digital Excellence Americas</div>
+          <div class="exp-badge">Oct 2023 – Actualidad</div>
+        </div>
+        <div class="exp-company">Helm Argentina S.R.L. · Beccar, Buenos Aires</div>
+        <div class="exp-desc">
+          Referente de digitalización para la región de las Américas. Diseño e implementación de soluciones
+          con Power Platform para mejorar la eficiencia operativa a escala regional.
+          <ul>
+            <li>Desarrollo de apps empresariales que redujeron el tiempo de proceso en <span class="hi">96%</span></li>
+            <li>Generación de ahorros de <span class="hi">USD 35.000+/año</span> frente a soluciones de terceros</li>
+            <li>Dashboards de inventario con KPIs: Forward Coverage, Forecast Accuracy y Slobs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Sales &amp; Operations Specialist</div>
+          <div class="exp-badge">Mar 2022 – Actualidad</div>
+        </div>
+        <div class="exp-company">Helm Argentina S.R.L. · Beccar, Buenos Aires</div>
+        <div class="exp-desc">
+          Gestión integral del proceso de forecast y soporte al ciclo completo de S&amp;OP.
+          Liderazgo de proyectos de eficiencia logística y automatización.
+          <ul>
+            <li>Reestructuración de red de almacenes → ahorro de <span class="hi">USD 60.000+/año</span></li>
+            <li>Automatización de procesos clave con Power Automate y UiPath</li>
+            <li>Administración comercial, CRM, facturación y logística de entregas</li>
+            <li>Negociación con proveedores locales y gestión de compras productivas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Administración de Ventas</div>
+          <div class="exp-badge">May 2019 – Mar 2022</div>
+        </div>
+        <div class="exp-company">Helm Argentina S.R.L. · Beccar, Buenos Aires</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Gestión de facturación, entregas y control de stock en almacenes propios y en consignación</li>
+            <li>Medición de satisfacción de clientes, cálculo de NPS y análisis de mejoras</li>
+            <li>Control de producción en plantas de terceros (Tolling) y negociación con transportes</li>
+            <li>Participación activa en el proceso S&amp;OP</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Head of Logistics</div>
+          <div class="exp-badge">Ene 2018 – May 2019</div>
+        </div>
+        <div class="exp-company">UPL Argentina S.A. · San Miguel del Monte</div>
+        <div class="exp-desc">
+          <ul>
+            <li>Planificación y control presupuestario del área de logística</li>
+            <li>Administración de depósitos e implementación de inventarios cíclicos</li>
+            <li>Desarrollo de KPIs e informes para organismos internos y externos</li>
+            <li>Cumplimiento de normas de Seguridad e Higiene; aplicación de metodologías de mejora continua</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Coordinador de Logística</div>
+          <div class="exp-badge">Jun 2016 – Ene 2018</div>
+        </div>
+        <div class="exp-company">UPL Argentina S.A. · San Miguel del Monte</div>
+        <div class="exp-desc">
+          Coordinación de entregas y control logístico diario. Implementación de mejoras operativas
+          e indicadores de desempeño que optimizaron tiempos y recursos del área.
+        </div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-head">
+          <div class="exp-role">Socio Fundador</div>
+          <div class="exp-badge">May 2018 – May 2020</div>
+        </div>
+        <div class="exp-company">Break Point · San Miguel del Monte</div>
+        <div class="exp-desc">
+          Fundación y gestión integral de un centro deportivo orientado a tenis, pádel y squash.
+          Responsable de operaciones, control de stock, atención al cliente y desarrollo del negocio.
+        </div>
+      </div>
+    </div>
+
+    <!-- PROYECTOS -->
+    <div class="section">
+      <div class="sec-title">Proyectos destacados</div>
+
+      <div class="proj-card">
+        <div class="proj-title">Automatización de Reportes SENASA · Helm Argentina</div>
+        <div class="proj-desc">
+          Aplicación desarrollada en Power Apps + Power Automate que reporta automáticamente los
+          movimientos de productos fitosanitarios al sistema de SENASA. Integración directa con
+          sistemas internos, validación automática de datos y trazabilidad completa en tiempo real.
+          Eliminó el reporte manual que demandaba horas diarias de trabajo operativo.
+        </div>
+        <div class="proj-metrics">
+          <span class="pm">96% ahorro en tiempo operativo</span>
+          <span class="pm">USD 35.000+ ahorrados vs. terceros</span>
+          <span class="pm">Cumplimiento normativo 100%</span>
+        </div>
+        <div class="proj-tags">
+          <span class="pt">Power Apps</span>
+          <span class="pt">Power Automate</span>
+          <span class="pt">API REST</span>
+          <span class="pt">SENASA</span>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-title">Reestructuración Red de Almacenes · Helm Argentina</div>
+        <div class="proj-desc">
+          Rediseño completo de la red de almacenes: análisis de costos, renegociación de contratos
+          con operadores logísticos, optimización de la distribución geográfica y flujos de inventario.
+          Proyecto de impacto directo en el P&L de la compañía.
+        </div>
+        <div class="proj-metrics">
+          <span class="pm">USD 60.000+ ahorrados/año</span>
+        </div>
+        <div class="proj-tags">
+          <span class="pt">Logística</span>
+          <span class="pt">S&OP</span>
+          <span class="pt">Negociación</span>
+          <span class="pt">Gestión de Proveedores</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
